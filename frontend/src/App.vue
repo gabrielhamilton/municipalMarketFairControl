@@ -1,10 +1,11 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
+    <!--
+<div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <router-view/> -->
+    <router-view/>
 
     <a-layout>
       <a-layout-header id="header">Header</a-layout-header>
@@ -21,8 +22,22 @@
       </a-layout>
      
     </a-layout>
+-->
+   <cab >
+
+   </cab>
   </div>
 </template>
+<script>
+import cab from './components/header/Header'
+export default {
+  name: 'app',
+  components:{
+    cab
+  }
+  
+}
+</script>
 
 <style>
 #app,
