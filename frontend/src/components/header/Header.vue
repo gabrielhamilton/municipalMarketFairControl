@@ -1,41 +1,33 @@
 <template>
   <a-layout id="components-layout-demo-responsive">
+    
     <a-layout-sider
-    class="verde"
+    class="menuLateral"
       breakpoint="lg"
       collapsedWidth="0"
       @collapse="onCollapse"
       @breakpoint="onBreakpoint"
     >
       <div class="logo" />
-      <a-menu class="verde" theme="dark" mode="inline" :defaultSelectedKeys="['4']">
-        <a-menu-item key="1">
-          <a-icon type="user" />
-          <span class="nav-text">Feirantes</span>
+      <a-menu class="menuLateral" theme="dark" mode="inline" :defaultSelectedKeys="['4']">
+
+        <a-menu-item v-for="item in menuItems" :key="item.id" class = "caixa_menu">
+          <a-icon :type="item.icon" />
+          <span class="nav-text">{{ item.text }}</span>
         </a-menu-item>
-        <a-menu-item key="2">
-          <a-icon type="video-camera" />
-          <span class="nav-text">Feira</span>
-        </a-menu-item>
-        <a-menu-item key="3">
-          <a-icon type="upload" />
-          <span class="nav-text">Entrar</span>
-        </a-menu-item>
-        <a-menu-item key="4">
-          <a-icon type="user" />
-          <span class="nav-text">nav 4</span>
-        </a-menu-item>
+
       </a-menu>
     </a-layout-sider>
+
     <a-layout :style="{ background: '#fff'}">
       <a-layout-header class="teste" :style="{ background: 'rgb(214, 234, 226)', padding: 0 }">
           <ul class="nav">
-            <li ><a href="#home" class="active">Feira Municipal Criativa</a></li>
+            <li ><a href="#home" class="active"><span class="titulo">Feira Municipal Criativa</span></a></li>
             <li class="login"><a href="#news" v-bind:class="{ esconde: mobile }">ENTRAR</a></li>
-</ul>
+          </ul>
       </a-layout-header>
       <a-layout-content :style="{ margin: '24px 16px 0' }">
-        <div :style="{ padding: '24px', background: '#f4f4f4', minHeight: '360px' }">
+        <div :style="{ padding: '24px', background: '#000', minHeight: '360px' }">
           content
         </div>
       </a-layout-content>
@@ -43,13 +35,32 @@
         Ant Design ©2018 Created by Ant UED
       </a-layout-footer>
     </a-layout>
+
   </a-layout>
 </template>
+
 <script>
 export default {
   data(){
     return{
-      mobile: false
+      mobile: false,
+      menuItems: [
+        {
+          id: 1,
+          icon: 'user',
+          text: 'Feirante',
+        },
+        {
+          id: 2,
+          icon: 'video-camera',
+          text: 'Feira',
+        },
+        {
+          id: 3,
+          icon: 'upload',
+          text: "Mapa"
+        }
+      ], 
     }
   },
   methods: {
@@ -76,14 +87,14 @@ export default {
   margin: 16px;
 }
 .teste{
-    font-size: 30px;
-    text-align: center;
-    font-family: Bradley Hand, cursive;
-    border-bottom: black;
-    border-style: none none solid none;
+  font-size: 30px;
+  text-align: center;
+  font-family: Bradley Hand, cursive;
+  border-bottom: black;
+  border-style: none none solid none;
 }
-.verde{
-  background-color: rgb(3, 37, 19);
+.menuLateral{
+  background-color: rgb(150,100,100);
 }
 .azul{
   background-color: #00ccff;
@@ -103,5 +114,13 @@ export default {
 .esconde{
   display: none;
 }
-
+.titulo{
+  text-color: #000;
+}
+.caixa_menu{
+  border: white dashed;
+}
+a{
+  text-decoration: none;
+}
 </style>
