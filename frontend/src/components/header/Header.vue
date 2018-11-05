@@ -21,10 +21,7 @@
 
     <a-layout :style="{ background: '#fff'}">
       <a-layout-header class="teste" :style="{ background: 'rgb(214, 234, 226)', padding: 0 }">
-          <ul class="nav">
-            <li ><a href="#home" class="active"><span class="titulo">Feira Municipal Criativa</span></a></li>
-            <li class="login"><a href="#news" v-bind:class="{ esconde: mobile }">ENTRAR</a></li>
-          </ul>
+          <span class="titulo">Feira Municipal Criativa</span>
       </a-layout-header>
       <a-layout-content :style="{ margin: '24px 16px 0' }">
         <div :style="{ padding: '24px', background: '#000', minHeight: '360px' }">
@@ -52,12 +49,12 @@ export default {
         },
         {
           id: 2,
-          icon: 'video-camera',
+          icon: 'shop',
           text: 'Feira',
         },
         {
           id: 3,
-          icon: 'upload',
+          icon: 'solution',
           text: "Mapa"
         }
       ], 
@@ -99,26 +96,12 @@ export default {
 .azul{
   background-color: #00ccff;
 }
-.nav li{
-  overflow: hidden;
-  display: inline-block;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.login{
-  float: right;
-  margin-right: 15px;
-  font-size: 15px;
-  display: hidden;
-}
-.esconde{
-  display: none;
-}
+
 .titulo{
-  text-color: #000;
+  color: rgb(128, 66, 66);
 }
 .caixa_menu{
-  border: white dashed;
+  border: rgba(255, 255, 255, 0.438) solid;
 }
 a{
   text-decoration: none;
