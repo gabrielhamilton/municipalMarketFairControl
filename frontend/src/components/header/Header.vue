@@ -20,11 +20,11 @@
     </a-layout-sider>
 
     <a-layout :style="{ background: '#fff'}">
-      <a-layout-header class="teste" :style="{ background: 'rgb(214, 234, 226)', padding: 0 }">
+      <a-layout-header class="teste" :style="{ background: '#00ccff', padding: 0 }">
           <span class="titulo">Feira Municipal Criativa</span>
       </a-layout-header>
       <a-layout-content :style="{ margin: '24px 16px 0' }">
-        <div :style="{ padding: '24px', background: '#000', minHeight: '360px' }">
+        <div :style="{ padding: '24px', background: '#f4f4f4', minHeight: '360px' }">
           content
         </div>
       </a-layout-content>
@@ -91,17 +91,19 @@ export default {
   border-style: none none solid none;
 }
 .menuLateral{
-  background-color: rgb(150,100,100);
+  background-color: rgb(43, 158, 224);
 }
 .azul{
-  background-color: #00ccff;
+  background-color: #d8d8d8;
 }
 
 .titulo{
-  color: rgb(128, 66, 66);
+  color: rgb(0, 0, 0);
+  overflow: hidden;
+  white-space: nowrap;
 }
 .caixa_menu{
-  border: rgba(255, 255, 255, 0.438) solid;
+  border: rgb(172, 167, 175) solid;
 }
 a{
   text-decoration: none;
