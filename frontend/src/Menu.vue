@@ -7,7 +7,7 @@
     >
       <div class="logo" >
         <!-- Para alterar a imagem de logo, altere o caminho da variavel src.-->
-        <img class="imagem_logo"  src="./image/login2.jpg" alt="Feira Criativa"> 
+        <img class="imagem_logo" src="./image/login2.jpg" alt="Feira Criativa"> 
       </div>
 
       <a-menu theme="dark" mode="inline" :defaultSelectedKeys="['1']">

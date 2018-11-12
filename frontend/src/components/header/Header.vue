@@ -46,16 +46,19 @@ export default {
           id: 1,
           icon: 'user',
           text: 'Feirante',
+          route: '\\crud'
         },
         {
           id: 2,
           icon: 'shop',
           text: 'Feira',
+          route: '\\crud'
         },
         {
           id: 3,
           icon: 'solution',
-          text: "Mapa"
+          text: 'Mapa',
+          route: '\\crud'
         }
       ], 
     }
@@ -91,7 +94,8 @@ export default {
   border-style: none none solid none;
 }
 .menuLateral{
-  background-color: rgb(43, 158, 224);
+  /*background-color: rgb(43, 158, 224);*/
+  
 }
 .azul{
   background-color: #d8d8d8;
