@@ -11,11 +11,18 @@
       <div class="logo" />
       <a-menu class="menuLateral" theme="dark" mode="inline" :defaultSelectedKeys="['4']">
 
+        <!--
         <a-menu-item v-for="item in menuItems" :key="item.id" class = "caixa_menu">
           <a-icon :type="item.icon" />
           <span class="nav-text">{{ item.text }}</span>
         </a-menu-item>
-
+        -->
+        <a-menu-item v-for="item in menuItems" :key="item.id" class = "caixa_menu">
+          <router-link :to="item.route" >
+            <a-icon :type="item.icon" />
+            <span class="nav-text">{{ item.text }}</span>
+          </router-link>
+        </a-menu-item>
       </a-menu>
     </a-layout-sider>
 
@@ -23,11 +30,9 @@
       <a-layout-header class="teste" :style="{ background: '#00ccff', padding: 0 }">
           <span class="titulo">Feira Municipal Criativa</span>
       </a-layout-header>
-      <a-layout-content :style="{ margin: '24px 16px 0' }">
-        <div :style="{ padding: '24px', background: '#f4f4f4', minHeight: '360px' }">
-          content
-        </div>
-      </a-layout-content>
+      
+      <router-view/>
+
       <a-layout-footer style="textAlign: center">
         Ant Design ©2018 Created by Ant UED
       </a-layout-footer>
@@ -46,19 +51,25 @@ export default {
           id: 1,
           icon: 'user',
           text: 'Feirante',
-          route: '\\crud'
+          route: "/user"
         },
         {
           id: 2,
           icon: 'shop',
           text: 'Feira',
-          route: '\\crud'
+          route: '/feira'
         },
         {
           id: 3,
           icon: 'solution',
           text: 'Mapa',
-          route: '\\crud'
+          route: '/mapa'
+        },
+        {
+          id: 4,
+          icon: 'solution',
+          text: 'CRUD',
+          route: '/crud'
         }
       ], 
     }

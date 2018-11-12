@@ -29,6 +29,7 @@
   </div>
 </template>
 <script>
+//import cab from './Header'
 import cab from './components/header/Header'
 export default {
   name: 'app',
