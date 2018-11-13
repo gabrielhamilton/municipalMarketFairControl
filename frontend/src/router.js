@@ -13,11 +13,19 @@ export default new Router({
       path: '/',
       name: 'home',
       component: HomeSupervisor,
+      props: {
+        view: 'home',
+        index: 1,
+      },
     },
     {
-      path: '/*',
-      name: 'outros',
+      path: '/about',
+      name: 'sobre',
       component: HomeSupervisor,
+      props: {
+        view: 'sobre',
+        index: 5,
+      },
     },
   ],
 });

@@ -2,7 +2,7 @@
   <div v-if="false">
     <Nav :toggleMenu="handleMenu" :toggle="toggleMenu" />
     <div>
-      <Menu :toggle="toggleMenu" />
+      <Menu :toggle="toggleMenu" :index="index" />
       <div id="content" :class="toggleMenu ? 'min-size': 'full-size'" :style="heightContent">
         <div class="conteudo">
           <h1>Bem Vindo!</h1>
@@ -26,13 +26,25 @@
         <Menu :toggle="toggleMenu" />
         <a-layout v-bind:class="[toggleMenu ? '': 'full-size', 'content']">
           <a-layout-content style="margin: 15px 15px 0 15px; background: white">
-            <div v-if="false">
-              <div>
-                <a-button>Criar Feira!</a-button>
-              </div>
-              <div>
-                Avisos
-              </div>
+            <div v-if="false"
+            style="vertical-align: middle">
+              <a-row type="flex" justify="center">
+                <a-col :span="6">
+                  <div style="margin: 10px 0">
+                    <a-button>Criar Feira!</a-button>
+                  </div>
+                  <div style="text-align: left">
+                    <a-collapse :v-model="[1]">
+                      <a-collapse-panel header="Aviso 1" key="1">
+                        <p>{{text}}</p>
+                      </a-collapse-panel>
+                      <a-collapse-panel header="Aviso 2" key="2" :disabled='false'>
+                        <p>{{text}}</p>
+                      </a-collapse-panel>
+                    </a-collapse>
+                  </div>
+                </a-col>
+              </a-row>
             </div>
             <div v-else >
               <svg :width="widMap" :height="heiMap" @click="getMousePos" id="map"
@@ -92,10 +104,9 @@
                 </div>
               </div>
             </div>
-            <div>{{pos}}{{cells}}</div>
           </a-layout-content>
           <a-layout-footer>
-            Ant Design ©2018 Created by Ant UED
+            MarketFair ©2018 Created by Utfpr
           </a-layout-footer>
         </a-layout>
       </a-layout>
@@ -112,8 +123,10 @@ export default {
     Menu,
     Nav,
   },
+  props: ['view', 'index'],
   data() {
     return {
+      text: 'ola mundo!',
       collapsed: false,
       toggleMenu: true,
       heightContent: 'min-height: '.concat(window.innerHeight - 65).concat('px'),
@@ -163,6 +176,7 @@ export default {
       top: '70px',
       visibility: (this.visible ? 'inerit' : 'hidden'),
     };
+    console.log(this.props.index);
   },
   methods: {
     handleMenu() {
@@ -233,6 +247,7 @@ export default {
           width: 1,
           height: 1,
         };
+        console.log('nova celula');
         this.cells[this.cells.length] = JSON.parse(JSON.stringify(cel));
         this.newCell = false;
       }

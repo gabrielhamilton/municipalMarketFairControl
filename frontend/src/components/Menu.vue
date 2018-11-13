@@ -1,6 +1,6 @@
 <template>
   <div class="Menu">
-    <a-menu :defaultSelectedKeys="['1']" mode="inline" theme="light"
+    <a-menu :defaultSelectedKeys="index" mode="inline" theme="light"
       :inlineCollapsed="!toggle" class="menu">
       <a-menu-item key="1" :class="toggle? '': 'item'">
         <router-link :to="{name: 'home'}">
@@ -39,7 +39,10 @@
 <script>
 export default {
   name: 'Menu',
-  props: ['toggle'],
+  props: ['toggle', 'index'],
+  mounted: () => {
+    console.log(this.index);
+  },
 };
 </script>
 <style scoped>
@@ -55,6 +58,8 @@ export default {
   ul.menu {
     height: 100%;
   }
+</style>
+<style>
   ::-webkit-scrollbar {
     width: 4px;
   }
