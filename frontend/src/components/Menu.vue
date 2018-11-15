@@ -19,9 +19,13 @@
       <a-sub-menu key="sub1">
         <span slot="title">
           <a-icon type="mail" />
-          <span>Navigation One</span>
+          <span>Feira</span>
         </span>
-        <a-menu-item key="5">Option 5</a-menu-item>
+        <a-menu-item key="5">
+          <router-link :to="{name: 'AjustaLayout'}">
+            <span>Ajustar Layout</span>
+          </router-link>
+        </a-menu-item>
         <a-menu-item key="6">Option 6</a-menu-item>
         <a-menu-item key="7">Option 7</a-menu-item>
         <a-menu-item key="8">Option 8</a-menu-item>
@@ -40,7 +44,7 @@
 export default {
   name: 'Menu',
   props: ['toggle', 'index'],
-  mounted: () => {
+  mounted() {
     console.log(this.index);
   },
 };
