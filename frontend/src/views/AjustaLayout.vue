@@ -23,13 +23,13 @@
         <div class="group">
           <div class="inputGroup">
             <span>Eixo X: </span>
-            <a-inputNumber :min="0" :max="65" :step="0.1"
+            <a-inputNumber :min="0" :max="65" :step="0.01"
               v-model="cells[key].pointX"
             />
           </div>
           <div class="inputGroup">
             <span>Eixo Y: </span>
-            <a-inputNumber :min="0" :max="25.1" :step="0.1"
+            <a-inputNumber :min="0" :max="25.1" :step="0.01"
               v-model="cells[key].pointY"
             />
           </div>
@@ -37,13 +37,13 @@
         <div class="group">
           <div class="inputGroup">
             <span>Largura: </span>
-            <a-inputNumber :min="1"
+            <a-inputNumber :min="0.1" :step="0.1"
               v-model="cells[key].width"
             />
           </div>
           <div class="inputGroup">
             <span>Altura: &nbsp;&nbsp; </span>
-            <a-inputNumber :min="1"
+            <a-inputNumber :min="0.1" :step="0.1"
               v-model="cells[key].height"
             />
           </div>
@@ -67,8 +67,8 @@ export default {
   },
   data() {
     return {
-      widMap: 700,
-      heiMap: 600,
+      widMap: 500,
+      heiMap: 388,
       mapScale: 1,
       key: false,
       newCell: false,
@@ -107,12 +107,15 @@ export default {
       'text-align': 'center',
       right: '15px',
       top: '70px',
-      visibility: (this.visible ? 'inerit' : 'hidden'),
+      visibility: this.visible ? 'inerit' : 'hidden',
     };
     const wid = window.innerWidth;
     console.log('wid: ', wid);
     if (wid <= 1600) {
       this.mapScale = (wid - 642) / this.widMap;
+      if (this.mapScale > 1) {
+        this.mapScale = 1 + ((this.mapScale - 1) / 2);
+      }
       console.log('mapScale', this.mapScale);
       this.widMap *= this.mapScale;
       this.heiMap *= this.mapScale;
@@ -125,11 +128,30 @@ export default {
       console.log('criando celula');
     },
     points(cell) {
-      const point1 = ''.concat(cell.pointX * this.scale).concat(',').concat(cell.pointY * this.scale).concat(' ');
-      const point2 = ''.concat((cell.pointX + cell.width) * this.scale).concat(',').concat(cell.pointY * this.scale).concat(' ');
-      const point3 = ''.concat((cell.pointX + cell.width) * this.scale).concat(',').concat((cell.pointY + cell.height) * this.scale).concat(' ');
-      const point4 = ''.concat(cell.pointX * this.scale).concat(',').concat((cell.pointY + cell.height) * this.scale).concat(' ');
-      return point1.concat(point2).concat(point3).concat(point4);
+      const point1 = ''
+        .concat(cell.pointX * this.scale)
+        .concat(',')
+        .concat(cell.pointY * this.scale)
+        .concat(' ');
+      const point2 = ''
+        .concat((cell.pointX + cell.width) * this.scale)
+        .concat(',')
+        .concat(cell.pointY * this.scale)
+        .concat(' ');
+      const point3 = ''
+        .concat((cell.pointX + cell.width) * this.scale)
+        .concat(',')
+        .concat((cell.pointY + cell.height) * this.scale)
+        .concat(' ');
+      const point4 = ''
+        .concat(cell.pointX * this.scale)
+        .concat(',')
+        .concat((cell.pointY + cell.height) * this.scale)
+        .concat(' ');
+      return point1
+        .concat(point2)
+        .concat(point3)
+        .concat(point4);
     },
     editCell(key) {
       this.cellEdit = JSON.parse(JSON.stringify(this.cells[key]));
@@ -155,12 +177,18 @@ export default {
       const j = cells.length;
       for (let cel = cells[0], i = 0; i < j; i += 1, cel = cells[i]) {
         if (cel.id < cell.id) {
-          if ((cell.pointX >= cel.pointX && cell.pointX <= (cel.pointX + cel.width))
-          || ((cell.pointX + cell.width) >= cel.pointX
-          && (cell.pointX + cell.width) <= (cel.pointX + cel.width))) {
-            if ((cell.pointY >= cel.pointY && cell.pointY <= (cel.pointY + cel.height))
-            || ((cell.pointY + cell.height) >= cel.pointY
-            && (cell.pointY + cell.height) <= (cel.pointY + cel.height))) {
+          if (
+            (cell.pointX >= cel.pointX &&
+              cell.pointX <= cel.pointX + cel.width) ||
+            (cell.pointX + cell.width >= cel.pointX &&
+              cell.pointX + cell.width <= cel.pointX + cel.width)
+          ) {
+            if (
+              (cell.pointY >= cel.pointY &&
+                cell.pointY <= cel.pointY + cel.height) ||
+              (cell.pointY + cell.height >= cel.pointY &&
+                cell.pointY + cell.height <= cel.pointY + cel.height)
+            ) {
               return true;
             }
           }
@@ -201,31 +229,33 @@ export default {
 };
 </script>
 <style scoped>
-  #map {
-    /*background-image: url("./../assets/backgrond.svg");*/
-  }
-  .clicked {
-    cursor: pointer;
-  }
-  .inputGroup {
-    padding: 5px;
-  }
-  .group {
-    display: inline-block;
-  }
-  .modalCell {
-    text-align: center;
-    max-width: 400px;
-    max-height: 200px;
-    top: 70px;
-    float: right;
-    margin: 20px;
-    padding: 20px;
-    border: solid gray 1px;
-    border-radius: 5px;
-  }
-  .btn-modal {
-    margin: 0 10px;
-    right: 0;
-  }
+#map {
+  background-image: url("./../assets/background.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.clicked {
+  cursor: pointer;
+}
+.inputGroup {
+  padding: 5px;
+}
+.group {
+  display: inline-block;
+}
+.modalCell {
+  text-align: center;
+  max-width: 400px;
+  max-height: 200px;
+  top: 70px;
+  float: right;
+  margin: 20px;
+  padding: 20px;
+  border: solid gray 1px;
+  border-radius: 5px;
+}
+.btn-modal {
+  margin: 0 10px;
+  right: 0;
+}
 </style>
